@@ -6,7 +6,7 @@ project at
 <https://github.com/rstats-gsoc/gsoc2018/wiki/Comparing-MCMC-runs#solutions-of-tests>.
 
 The source code can be accessed at
-<https://github.com/thiloshon/GSoC-2018-MCMC>.
+<https://github.com/thiloshon/GSoC-2018-MCMC/blob/master/Task%20Tests.R>.
 
 Object Creation
 ---------------
@@ -22,7 +22,6 @@ First, let's create a sampleInfoClass object.
 Now, let's check what the objects contain.
 
     > infoClassObj1
-
     ## Reference class object of class "sampleInfoClass"
     ## Field "vector":
     ## [1] 2 4 1 5 3
@@ -30,7 +29,6 @@ Now, let's check what the objects contain.
     ## list()
 
     > infoClassObj2
-
     ## Reference class object of class "sampleInfoClass"
     ## Field "vector":
     ##  [1]  2 15 11  4  5  6 18 16 14  9  1 13 19 10 17  7  8 12  3 20
@@ -45,7 +43,6 @@ content.
 
 
     > infoCollection
-
     ## Reference class object of class "sampleInfoCollectionClass"
     ## Field "sampleInfoClasses":
     ## [[1]]
@@ -70,7 +67,6 @@ Methods and Object Manipulation
 Now let's try to calculate the mean of the objects in infoCollection.
 
     > infoCollection$calculateScalar(FUN = mean)
-
     ## [[1]]
     ## [1] 3
     ## 
@@ -80,7 +76,6 @@ Now let's try to calculate the mean of the objects in infoCollection.
 And calculate the max as well.
 
     > infoCollection$calculateScalar(FUN = max)
-
     ## [[1]]
     ## [1] 5
     ## 
@@ -89,7 +84,6 @@ And calculate the max as well.
     
 
     > infoCollection
-
     ## Reference class object of class "sampleInfoCollectionClass"
     ## Field "sampleInfoClasses":
     ## [[1]]
