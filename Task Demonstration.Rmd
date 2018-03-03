@@ -1,15 +1,23 @@
-#' A simple Reference Class Definition to represent sampleInfoClass.
-#'
-#' @field vector A numeric vector
-#' @field vectorMetrics List of arbitrary metrics of the vector
-sampleInfoClass <- setRefClass("sampleInfoClass", 
-                               fields = list(vector = "numeric", vectorMetrics = "list"))
+---
+title: "Comparing MCMC Runs Test Tasks"
+author: "Thiloshon Nagarajah"
+date: "March 3, 2018"
+output: html_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-#' A Reference Class Definition with Initializer to represent sampleInfoClass.
-#'
-#' @field vector A numeric vector
-#' @field vectorMetrics List of arbitrary metrics of the vector
+This is a demostration of test tasks given in the Comparing MCMC runs project at <https://github.com/rstats-gsoc/gsoc2018/wiki/Comparing-MCMC-runs#solutions-of-tests>.
+
+The source code can be accessed at <https://github.com/thiloshon/GSoC-2018-MCMC>.
+
+## Object Creation
+First, let's create a sampleInfoClass object.
+
+```{r echo=F, eval=T}
+set.seed(1000)
 sampleInfoClass <-
     setRefClass("sampleInfoClass",
         fields = list(vector = "numeric", vectorMetrics = "list"),
@@ -25,10 +33,6 @@ sampleInfoClass <-
         )
     )
 
-#' A Reference Class Definition to represent collection of sampleInfoClass.
-#'
-#' @include sampleInfoClass
-#' @field sampleInfoClasses A list of sampleInfoClasses.
 sampleInfoCollectionClass <-
     setRefClass("sampleInfoCollectionClass",
         fields = list(sampleInfoClasses = "list"),
@@ -48,6 +52,7 @@ sampleInfoCollectionClass <-
             }
         )
     )
+
 
 sampleInfoCollectionClass$methods(
     calculateScalar = function(FUN = mean, ...) {
@@ -88,3 +93,73 @@ sampleInfoCollectionClass$methods(
         cat(paste("Plot is saved to ", getwd()))
     }   
 )
+```
+
+
+```{r echo=T, eval=T}
+infoClassObj1 <- sampleInfoClass(vector = sample(5))
+infoClassObj2 <- sampleInfoClass(vector = sample(20))
+```
+
+Now, let's check what the objects contain.
+
+```{r echo=T, eval=T}
+infoClassObj1
+infoClassObj2
+```
+
+Now, let's create a sampleInfoCollectionClass object and check the content.
+
+```{r echo=T, eval=T}
+infoCollection <- sampleInfoCollectionClass(sampleInfoClasses = list(infoClassObj1, infoClassObj2))
+infoCollection
+```
+
+Great! The two sampleInfoClasses are in the object. 
+
+## Methods and Object Manipulation
+
+Now let's try to calculate the mean of the objects in infoCollection.
+
+```{r echo=T, eval=T}
+infoCollection$calculateScalar(FUN = mean)
+```
+
+And calculate the max as well.
+
+```{r echo=T, eval=T}
+infoCollection$calculateScalar(FUN = max)
+infoCollection
+```
+
+As you can see, two new list elements are present in the vectorMetrics, namely, `$mean` and `$max`.
+
+
+## Plotting and Object Visualization
+
+Now, at last, let's create a simple plot for the average of the objects.
+
+```{r echo=T, eval=T}
+infoCollection$generatePlot(metric = "mean")
+```
+
+And a plot with custom plot settings.
+
+```{r echo=T, eval=T}
+infoCollection$generatePlot(
+    metric = "mean",
+    barplot,
+    main = "sampleInfoClass Scalar Plot",
+    xlab = "Average",
+    col = "blue"
+    )
+```
+
+
+
+
+
+
+
+
+
