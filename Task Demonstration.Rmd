@@ -2,14 +2,14 @@
 title: "Comparing MCMC Runs Test Tasks"
 author: "Thiloshon Nagarajah"
 date: "March 3, 2018"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is a demostration of test tasks given in the Comparing MCMC runs project at <https://github.com/rstats-gsoc/gsoc2018/wiki/Comparing-MCMC-runs#solutions-of-tests>.
+This is a demonstration of test tasks given in the Comparing MCMC runs project at <https://github.com/rstats-gsoc/gsoc2018/wiki/Comparing-MCMC-runs#solutions-of-tests>.
 
 The source code can be accessed at <https://github.com/thiloshon/GSoC-2018-MCMC>.
 
